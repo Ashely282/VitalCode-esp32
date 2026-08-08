@@ -1,4 +1,18 @@
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SH110X.h>
+#include <WiFi.h>
+#include "config.h"
+#include "face.h"
+#include "mqtt_client.h"
+#include "reminders.h"
 
+// ============================================================
+// VITALCODE ROBOT - Main Sketch
+// Ties together: OLED face, expressions/animations, medicine
+// reminder logic (reminders.cpp), buzzer feedback, and MQTT.
+// Everything in loop() is non-blocking (millis()-based).
+// ============================================================
 Adafruit_SH1106G display(OLED_WIDTH, OLED_HEIGHT, &Wire, -1);
 Face face(&display);
 
@@ -19,7 +33,26 @@ void onMqttMessage(const char* topic, const char* payload) {
     }
   }
 }
+void checkMedicineButton() {
+  bool buttonState = digitalRead(MEDICINE_BUTTON_PIN);
+  if (lastButtonState == HIGH && buttonState == LOW) { // pressed (active-low w/ pull-up)
+    remindersOnButtonPressed();
+  }
+  lastButtonState = buttonState;
+}
 
+// ---------------- Setup / Loop ----------------
+
+void setup() {
+  Serial.begin(115200);
+
+  pinMode(BUZZER_PIN, OUTPUT);
+  digitalWrite(BUZZER_PIN, LOW);
+  pinMode(MEDICINE_BUTTON_PIN, INPUT_PULLUP);
+
+  Wire.begin(OLED_SDA_PIN, OLED_SCL_PIN);
+
+  if (!display.begin(OLED_I2C_ADDR, true)) {
 Serial.println("OLED not found! Check wiring/address in config.h");
     while (true) delay(1000);
   }
@@ -60,4 +93,3 @@ void loop() {
   remindersUpdate();         // non-blocking schedule + state machine
   face.update();             // non-blocking animation/expression rendering
 }
-
