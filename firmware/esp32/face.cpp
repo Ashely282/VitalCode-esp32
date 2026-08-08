@@ -146,7 +146,7 @@ void Face::drawThinking() {
   drawEye(RIGHT_EYE_X + 3, EYE_Y, EYE_W - 4, EYE_H - 4);
   drawMouth(4);
 }
-oid Face::drawExcited() {
+void Face::drawExcited() {
   // Bigger, brighter eyes (larger rect) + optional sparkle dots
   drawEye(LEFT_EYE_X - 2, EYE_Y - 2, EYE_W + 4, EYE_H + 4, 8);
   drawEye(RIGHT_EYE_X - 2, EYE_Y - 2, EYE_W + 4, EYE_H + 4, 8);
