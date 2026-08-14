@@ -2,7 +2,6 @@
 #include "reminders.h"
 #include "mqtt_client.h"
 #include <Arduino.h>
-Medicine verification functions
 static const unsigned long VERIFICATION_TIMEOUT_MS = 300000UL;
 static Face* face = nullptr;
 static VerificationStatus status = VERIFY_NONE;
