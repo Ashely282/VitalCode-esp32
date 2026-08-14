@@ -9,10 +9,10 @@
 #define MEDICINE_BUTTON_PIN 5
 #define WIFI_SSID      "YOUR_WIFI_SSID"
 #define WIFI_PASSWORD  "YOUR_WIFI_PASSWORD"
-#define MQTT_BROKER    "your-broker-url.hivemq.cloud"
+#define MQTT_BROKER    "d126c34e89544bba8f8697f4c1f39687.s1.eu.hivemq.cloud"
 #define MQTT_PORT      8883
-#define MQTT_USERNAME  "your_mqtt_username"
-#define MQTT_PASSWORD  "your_mqtt_password"
+#define MQTT_USERNAME  "vitalcode_backend"
+#define MQTT_PASSWORD  "VitalCode"
 #define MQTT_CLIENT_ID "vitalcode_robot_01"
 #define TOPIC_ROBOT_STATUS      "robot/status"
 #define TOPIC_ROBOT_EMOTION     "robot/emotion"
