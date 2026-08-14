@@ -52,9 +52,11 @@ unsigned long elapsedInCycle = (now - emergencyStartedAt) % TOTAL_CYCLE_MS;
   if (elapsedInCycle < BUZZER_ON_MS)
   {
     digitalWrite(BUZZER_PIN, HIGH); 
-  } else 
+  }
+  else 
   {
     digitalWrite(BUZZER_PIN, LOW);  
+}
 }
 void fallDetectionOnEvent(EmergencyType type)
 {
