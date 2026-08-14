@@ -15,6 +15,13 @@ void MqttClientWrapper::begin()
 }
 void MqttClientWrapper::reconnect()
 {
+  unsigned long now = millis();
+
+if (now - lastReconnectAttempt < RECONNECT_INTERVAL_MS)
+{
+  return;
+}
+lastReconnectAttempt = now;
   Serial.print("MQTT: connecting to broker...");
 
   if (client.connect(MQTT_CLIENT_ID, MQTT_USERNAME, MQTT_PASSWORD))
