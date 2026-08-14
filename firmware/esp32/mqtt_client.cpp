@@ -59,13 +59,6 @@ void MqttClientWrapper::subscribe(const char* topic)
     client.subscribe(topic);
   }
 }
-void MqttClientWrapper::subscribe(const char* topic) 
-{
-  if (client.connected())
-  {
-    client.subscribe(topic);
-  }
-}
 void MqttClientWrapper::setMessageHandler(MqttMessageHandler handler)
 {
   messageHandler = handler;
