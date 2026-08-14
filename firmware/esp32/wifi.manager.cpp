@@ -9,8 +9,8 @@ static WifiStatusHandler statusHandler = nullptr;
 static void notifyStatus(bool connected)
 {
   if (statusHandler != nullptr) 
-}
-statusHandler(connected);
+  {
+    statusHandler(connected);
  }
 }
 void wifiBegin()
