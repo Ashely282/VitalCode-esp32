@@ -7,6 +7,12 @@ MqttClientWrapper::MqttClientWrapper()
 {
   activeInstance = this;
 }
+void MqttClientWrapper::begin()
+{
+  client.setServer(MQTT_BROKER, MQTT_PORT);
+  client.setCallback(MqttClientWrapper::staticCallback);
+  secureClient.setInsecure();
+}
 Serial.print("MQTT: connecting to broker...");
   if (client.connect(MQTT_CLIENT_ID, MQTT_USERNAME, MQTT_PASSWORD))
   {
