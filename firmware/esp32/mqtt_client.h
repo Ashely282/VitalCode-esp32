@@ -4,7 +4,7 @@
 #include <WiFiClientSecure.h>
 #include <PubSubClient.h>
 #include "config.h"
-typedef void (MqttMessageHandler)(const char topic, const char* payload);
+typedef void (MqttMessageHandler)(const char* topic, const char* payload);
 class MqttClientWrapper
 {
   public:
