@@ -316,7 +316,7 @@ maybeAutoBlink();
         drawAngry(); break;
       case EXPR_LOVE:            
         drawLove(); break;
-      case EXPER_DIZZY:
+      case EXPR_DIZZY:
         drawDizzy(); break;
       case EXPR_LISTENING:           
         drawListening(); break;
