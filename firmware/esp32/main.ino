@@ -6,6 +6,7 @@
 #include "face.h"
 #include "mqtt_client.h"
 #include "reminders.h"
+#include "medicine_verification.h"
 Adafruit_SH1106G display(OLED_WIDTH, OLED_HEIGHT, &Wire, -1);
 Face face(&display);
 bool lastButtonState = HIGH;
@@ -20,6 +21,9 @@ void onMqttMessage(const char* topic, const char* payload)
     if (strcmp(payload, "remind") == 0)
   {
     remindersForceTrigger();
+    else if (strcmp(payload,"verify_taken")==0)
+    {
+      medicineVerificationOnCommand(payload);
   }
  }
 }
@@ -68,12 +72,14 @@ Serial.println("OLED not found! Check wiring/address in config.h");
   mqttClient.begin();
   mqttClient.setMessageHandler(onMqttMessage);
   remindersBegin(&face);
+  medicineVerificationBegin(&face);
   Serial.println("VITALCODE robot online.");
 }
 void loop()
 {
   mqttClient.update();       
   checkMedicineButton();
-  remindersUpdate();        
+  remindersUpdate();   
+  medicineVerificationUpdate();
   face.update();             
 }
