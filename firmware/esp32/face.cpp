@@ -181,7 +181,14 @@ void Face::drawTalking()
 {
   drawEye(LEFT_EYE_X, EYE_Y, EYE_W, EYE_H);
   drawEye(RIGHT_EYE_X, EYE_Y, EYE_W, EYE_H);
-  if ((animFrame / 4) % 2 == 0) 
+
+  if ((animFrame / 4) % 2 == 0)
+  {
+    drawMouth(3);
+  }
+  else
+  {
+    drawMouth(0);
   }
 }
 void Face::drawWink() {
