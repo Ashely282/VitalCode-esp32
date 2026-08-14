@@ -24,6 +24,35 @@ enum Expression
   EXPR_CHARGING,
   EXPR_LOADING,
 };
+  class Face
+{
+public:
+    Face(Adafruit_SH1106G* displayRef);
+
+    void begin();
+
+    void setExpression(Expression e);
+    void setExpressionTimed(Expression e, unsigned long holdMs);
+    void setChargePercent(int percent);
+    void update();
+
+private:
+    Adafruit_SH1106G* display;
+
+    Expression currentExpression;
+    Expression previousExpression;
+
+    unsigned long lastFrameTime;
+    unsigned long lastBlinkTime;
+    unsigned long expressionStartTime;
+    unsigned long timedExpressionUntil;
+    unsigned long blinkStartTime;
+
+    bool isBlinking;
+
+    int animFrame;
+    int chargePercent;
+
     void drawEye(int x, int y, int w, int h, int radius = 6, bool filled = true);
     void drawNeutral();
     void drawHappy();
@@ -43,7 +72,7 @@ enum Expression
     void drawMedicineReminder();
     void drawCharging();
     void drawLoading();
-    void drawMouth(int style); 
+    void drawMouth(int style);
     void maybeAutoBlink();
     void drawHeart(int cx, int cy);
     void drawPillIcon(int x, int y);
