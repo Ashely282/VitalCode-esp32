@@ -210,7 +210,7 @@ void Face::drawLookRight()
   drawEye(RIGHT_EYE_X + 6, EYE_Y, EYE_W, EYE_H);
   drawMouth(0);
 }
-oid Face::drawShaken() 
+void Face::drawShaken() 
 {
   drawEye(LEFT_EYE_X - 3, EYE_Y - 3, EYE_W + 6, EYE_H + 6, 12);
   drawEye(RIGHT_EYE_X - 3, EYE_Y - 3, EYE_W + 6, EYE_H + 6, 12);
