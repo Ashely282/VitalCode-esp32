@@ -13,7 +13,10 @@ void MqttClientWrapper::begin()
   client.setCallback(MqttClientWrapper::staticCallback);
   secureClient.setInsecure();
 }
-Serial.print("MQTT: connecting to broker...");
+void MqttClientWrapper::reconnect()
+{
+  Serial.print("MQTT: connecting to broker...");
+
   if (client.connect(MQTT_CLIENT_ID, MQTT_USERNAME, MQTT_PASSWORD))
   {
     Serial.println("connected.");
