@@ -59,17 +59,6 @@ void MqttClientWrapper::subscribe(const char* topic)
     client.subscribe(topic);
   }
 }
-bool MqttClientWrapper::isConnected()
-{
-  return client.connected();
-}
-void MqttClientWrapper::publish(const char* topic, const char* payload) 
-{
-  if (client.connected()) 
-  {
-    client.publish(topic, payload);
-  }
-}
 void MqttClientWrapper::subscribe(const char* topic) 
 {
   if (client.connected())
